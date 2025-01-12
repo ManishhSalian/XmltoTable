@@ -1,0 +1,16 @@
+﻿<root>
+	<enumerations>
+		<enumeration value="CurrencyCode">
+			<documentation>enum: ISO-4217 / UN/ECE REC 09 Codes</documentation>
+		</enumeration>
+		<enumeration value="ADP">
+			<documentation>Andorran Peseta</documentation>
+		</enumeration>
+		<enumeration value="UnitOfMeasureCodeEnumeration">
+			<documentation>enum codes excerpted from UN/ECE REC 20</documentation>
+		</enumeration>
+		<enumeration value="EA">
+			<documentation>each</documentation>
+		</enumeration>
+	</enumerations>
+</root>

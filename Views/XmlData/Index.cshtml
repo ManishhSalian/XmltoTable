@@ -1,0 +1,130 @@
+﻿@model List<(string Element, string Description)>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light grey background */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #4CAF50; /* Green header text */
+        font-size: 2em;
+        margin: 20px 0;
+    }
+
+    .table-container {
+        max-width: 90%;
+        margin: 0 auto;
+        overflow-x: auto; /* Enable horizontal scroll for smaller screens */
+    }
+
+    #xmlTable {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd; /* Subtle border for table */
+        background-color: #fff; /* White background for table */
+    }
+
+        #xmlTable th,
+        #xmlTable td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Subtle bottom border */
+        }
+
+        #xmlTable th {
+            background-color: #4CAF50; /* Green header background */
+            color: white;
+            font-weight: bold;
+            position: sticky; /* Sticky header */
+            top: 0;
+            z-index: 1;
+        }
+
+        #xmlTable tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light grey for alternating rows */
+        }
+
+        #xmlTable tr:hover {
+            background-color: #e8f5e9; /* Light green on hover */
+        }
+
+    .dataTables_wrapper .dataTables_filter {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .dataTables_filter input {
+        border: 1px solid #4CAF50;
+        border-radius: 20px; /* Rounded corners */
+        padding: 8px;
+        width: 300px;
+        outline: none;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+        .dataTables_filter input:focus {
+            box-shadow: 0 0 8px #4CAF50;
+        }
+
+    @@media screen and (max-width: 768px) {
+        h1
+
+    {
+        font-size: 1.5em;
+    }
+
+    .dataTables_filter input {
+        width: 90%; /* Adjust search box width for smaller screens */
+    }
+
+    }
+</style>
+
+<h1>Filtered XML Data</h1>
+
+<div class="table-container">
+    <table id="xmlTable" class="display">
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Element</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css" rel="stylesheet" />
+
+<script>
+    $(document).ready(function () {
+        $('#xmlTable').DataTable({
+            responsive: true, // Enable responsive behavior
+            paging: true,
+            searching: true,
+            ordering: true,
+            autoWidth: false,
+            columnDefs: [
+                { targets: "_all", className: "dt-head-center dt-body-left" } // Center headers and left-align content
+            ]
+        });
+    });
+</script>
